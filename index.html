@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Roteirizador 9000- V3</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+    <link rel="stylesheet" type="text/css" href="meuestilo.css" />
+    <link rel="stylesheet" type="text/css" href="snorlax.css" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <style>
+        #issMap {
+            height: 400px;
+            width: 400px;
+            border: 5px solid;
+        }
+        
+        #bt1 {
+            background-color: darkblue;
+        }
+    </style>
+
+    <style>
+        #snorlax {
+            height: 400px;
+            width: 400px;
+        }
+        
+        #imgpetro {
+            height: 50px;
+        }
+        
+        #espaco {
+            height: 10px;
+        }
+        
+        #geral {
+            background-image: url(fund-petro.jpg);
+            height: 600px;
+        }
+        
+        #nomrot {
+            border: 5px solid;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    </p>
+    <div id="geral" class="container-fluid">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img id="imgpetro" src="logo.png" alt="">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                <span class="navbar-toggler-icon"> </span>                
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSite">
+                <ul class="navbar-nav mr-auto">
+
+                    <button class="btn btn-outline-light" onclick="create(1)">Rota 1 </button>
+                    <button class="btn btn-outline-light" onclick="create(2)">Rota 2 </button>
+                    <button class="btn btn-outline-light" onclick="apaga()">Apaga </button>
+
+
+                </ul>
+
+            </div>
+        </nav>
+        <div class="row">
+            <div id="espaco" class=" col-sm-12"></div>
+        </div>
+
+
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div id="i" class=" col-sm-2"></div>
+                <h1 id="nomrot">Rota gerada</h1>
+            </div>
+            <div class="row ">
+                <div id="snor" class=" col-sm-1"></div>
+                <div id="issMap" class=" col-sm-5"></div>
+                <div id="i" class=" col-sm-4"></div>
+                <div class="snorlax">
+                    <div class="snorlax__head">
+                        <div class="snorlax__head-outline"></div>
+                        <div class="snorlax__ear snorlax__ear--left"></div>
+                        <div class="snorlax__ear snorlax__ear--right"></div>
+                        <div class="snorlax__brow snorlax__brow--left"></div>
+                        <div class="snorlax__brow snorlax__brow--right"></div>
+                        <div class="snorlax__eye snorlax__eye--left"></div>
+                        <div class="snorlax__eye snorlax__eye--right"></div>
+                        <div class="snorlax__mouth">
+                            <div class="snorlax__tooth snorlax__tooth--left"></div>
+                            <div class="snorlax__tooth snorlax__tooth--right"></div>
+                        </div>
+                    </div>
+                    <div class="snorlax__arm-left">
+                        <div class="snorlax__arm-wrapper">
+                            <div class="snorlax__claws--left"></div>
+                            <div class="snorlax__arm-left-arm"></div>
+                        </div>
+                    </div>
+                    <div class="snorlax__arm-right">
+                        <div class="snorlax__claws--right"></div>
+                        <div class="snorlax__arm-right-arm"></div>
+                        <div class="snorlax__claw"></div>
+                    </div>
+                    <div class="snorlax__body">
+                        <div class="snorlax__body-shade"></div>
+                        <div class="snorlax__belly">
+                            <div class="snorlax__belly-segment snorlax__belly-segment--one"></div>
+                            <div class="snorlax__belly-segment snorlax__belly-segment--two"></div>
+                        </div>
+                    </div>
+                    <div class="snorlax__left-foot">
+                        <div class="snorlax__left-foot-foot"></div>
+                        <div class="snorlax__foot-claw snorlax__foot-claw--one">
+                            <div></div>
+                        </div>
+                        <div class="snorlax__foot-claw snorlax__foot-claw--two">
+                            <div></div>
+                        </div>
+                        <div class="snorlax__foot-claw snorlax__foot-claw--three">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="snorlax__right-foot">
+                        <div class="snorlax__right-foot-foot"></div>
+                        <div class="snorlax__foot-claw snorlax__foot-claw--four">
+                            <div></div>
+                        </div>
+                        <div class="snorlax__foot-claw snorlax__foot-claw--five">
+                            <div></div>
+                        </div>
+                        <div class="snorlax__foot-claw snorlax__foot-claw--six">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+                function create(xx) {
+
+                    // coordenadas las plataformas
+                    var lat = -21.8209;
+                    var lon = -41.0199;
+
+                    // vitoria
+                    var latv = -20.04213;
+                    var lonv = -39.52483;
+
+                    // e o rio de janeiro continua lindo
+
+                    var latrj = -22.85831;
+                    var lonrj = -40.35841;
+
+                    // porto guamaré
+                    var latguam = -5.10745;
+                    var longuam = -36.31845;
+
+                    // plataforma de agulha
+
+                    var latagulha1 = -4.907084;
+                    var lonagulha1 = -36.25953;
+
+                    // merluza
+
+
+                    var latmerluza = -25.26693;
+                    var lonmerluza = -45.2528;
+
+                    //usp
+                    var latusp = -23.552960;
+                    var lonusp = -46.729564;
+
+                    var tamuspx = 10;
+                    var tamuspy = 10;
+
+
+
+                    // gerando mapa e tiles
+                    let mymap = L.map('issMap').setView([latguam, longuam], 13);
+
+
+                    let attribution =
+                        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+                    let tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+                    let tiles = L.tileLayer(tileUrl, {
+                        attribution
+                    }); //notar mesmo L- leaflet library- la do site de mapa
+
+                    tiles.addTo(mymap);
+
+                    // gerando icones
+
+                    let iconx = 20;
+                    let icony = 20;
+                    let fpsorj = L.icon({
+                        iconUrl: 'pso.png',
+                        iconSize: [iconx, icony],
+                        iconAnchor: [22, 16],
+                    });
+
+                    let fpsovitoria = L.icon({
+                        iconUrl: 'vitoria.png',
+                        iconSize: [iconx, icony],
+                        iconAnchor: [22, 16],
+                    });
+                    let iconguamare = L.icon({
+                        iconUrl: 'guamare.jpg',
+                        iconSize: [iconx, icony],
+                        iconAnchor: [22, 16],
+                    });
+
+                    let iconplataforma = L.icon({
+                        iconUrl: 'plataforma.png',
+                        iconSize: [iconx, icony],
+                        iconAnchor: [22, 16],
+                    });
+                    // merluza
+                    let iconplatsant = L.icon({
+                        iconUrl: 'platsant.png',
+                        iconSize: [iconx, icony],
+                        iconAnchor: [22, 16],
+                    });
+                    // S2
+                    let iconusp = L.icon({
+                        iconUrl: 's2.png',
+                        iconSize: [tamuspx, tamuspy],
+                        iconAnchor: [22, 16],
+                    });
+
+
+
+
+                    // adicionando icones
+                    /// icon usp
+                    // L.marker([latusp, lonusp], {
+                    //     icon: iconusp
+                    // }).addTo(mymap);
+
+                    /////////////////qq
+                    L.marker([latmerluza, lonmerluza], {
+                        icon: iconplatsant
+                    }).addTo(mymap);
+
+                    L.marker([latv, lonv], {
+                        icon: fpsovitoria
+                    }).addTo(mymap);
+
+                    L.marker([lat, lon], {
+                        icon: fpsorj
+                    }).addTo(mymap);
+
+                    L.marker([latrj, lonrj], {
+                        icon: fpsorj
+                    }).addTo(mymap);
+
+                    L.marker([latagulha1, lonagulha1], {
+                        icon: iconplataforma
+                    }).addTo(mymap);
+
+                    if (xx == 1) {
+                        let polygon = L.polygon([
+                            [latagulha1, lonagulha1],
+                            [latrj, lonrj],
+                            [lat, lon],
+                            [latmerluza, lonmerluza]
+                        ]).addTo(mymap);
+                    } else {
+                        let polygon = L.polygon([
+                            [latrj, lonrj],
+                            [latagulha1, lonagulha1],
+                            [lat, lon],
+                            [latmerluza, lonmerluza]
+                        ]).addTo(mymap);
+
+
+                    }
+                    // marcador
+                    let marker = L.marker([latguam, longuam], {
+                        icon: iconguamare
+                    }).addTo(mymap);
+
+                    // let markereu = L.marker([latusp, lonusp], {
+                    //    icon: iconusp
+                    //  }).addTo(mymap);
+                    //markereu.bindPopup("eu aqui").openPopup();
+
+
+
+
+
+                    let api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+                    let fistTime = true;
+
+                    // como json
+                    async function getISS() {
+                        let response = await fetch(api_url);
+                        let data = await response.json();
+                        let {
+                            latitude,
+                            longitude
+                        } = data;
+                        console.log(latitude);
+                        console.log(longitude);
+                        //  L.marker([latitude, longitude]).addTo(mymap); // estatico
+                        // mostrar na tela
+                        marker.setLatLng([latitude, longitude]).addTo(mymap);
+
+                        //if (fistTime) {
+                        //    mymap.setView([latitude, longitude], 2); // foca o mapa onde esta a estacao
+                        //    firstTime = false;
+                        //}
+
+                        document.getElementById('lat').textContent = latitude.toFixed(2); // tofixed para truncar 2 casas
+                        document.getElementById('long').textContent = longitude.toFixed(2);
+
+                    }
+
+                }
+
+
+                function apaga() {
+                    window.location.reload();
+                }
+            </script>
+
+
+
+
+</body>
+
+
+
+</html>
